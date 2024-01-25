@@ -1,0 +1,22 @@
+title: "methodsResults.Rmd"
+author: "Kaia Barzilay"
+date: "2022-10-14"
+bibliography: bibliography.bib
+
+---
+
+## Methods
+
+In this module, Salmon [1] was used to first create an index of the de-novo transcriptome within Discovery. Once this index was created, Salmon was once again used to perform abundance estimation for all the Aip samples in the fastq directory within Discovery, and the samples were aligned to the created index. Once the Salmon relative abundance was estimated, tximport [2] was used to import the abundance, and then DESeq2 [3] was used to perform statistical tests to identiy differentially expressed genes from the transcriptome. This produced the results table deAnnotated.csv.
+
+## References
+
+Love, Michael I., Wolfgang Huber, and Simon Anders. 2014. “Moderated Estimation of Fold Change and Dispersion for RNA-Seq Data with DESeq2.” *Genome Biol* 15 (12): 550–50.
+
+Patro, Rob, Geet Duggal, Michael I. Love, Rafael A. Irizarry, and Carl Kingsford. 2017. “Salmon Provides Fast and Bias-Aware Quantification of Transcript Expression.” *Nat Methods* 14 (4): 417–19.
+
+Soneson, Charlotte, Michael I. Love, and Mark D. Robinson. 2016. “Differential Analyses for RNA-Seq: Transcript-Level Estimates Improve Gene-Level Inferences.” *F1000Res* 4 (February): 1521–1.
+
+## Results
+
+```{R, code=readLines("de.R"), echo=TRUE, eval=TRUE}

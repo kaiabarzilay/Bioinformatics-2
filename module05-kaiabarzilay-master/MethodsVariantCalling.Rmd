@@ -1,0 +1,27 @@
+title: "MethodsVariantCalling.Rmd"
+author: "Kaia Barzilay"
+date: "2022-10-24"
+output: 
+	html_document: 
+	toc: true
+	toc_depth: 4
+	toc_float: true
+	dev: 'svg'
+	md_document:
+	  variant: gfm
+bibliography: references.ris
+---
+
+## Methods
+
+The script getGenome.sh gets the reference genome GRCh38.primary_assembly.genome.fa.gz from the Gencode FTP server. Once the reference genome is retrieved, the script getReads.sh gets the NGS reads from the NA12878 reference sample, which are used in the reference paper [@McKenna]. These reads are available in the SRA. With the reads retrieved, the next script trimReads.sh quality trims the reads using Trimmomatic [@Bolger]. In order to continue to align the reads, the script indexGenome.sh uses BWA [@Li] to index the genome for use. Once the genome is indexed, the script alignReads.sh is used to align the retrieved reads. With the aligned reads, the script sort.sh is used to sort the file created from the alignment using mem. The output of this is the file in bam format. The script indexReads.sh is then used to index the reads, and then the script runDeepVariant.sh is used to produce a VCF file using DeepVariant [@Poplin2018].
+
+## References
+
+Bolger, Anthony M., Marc Lohse, and Bjoern Usadel. 2014. “Trimmomatic: A Flexible Trimmer for Illumina Sequence Data.” *Bioinformatics* 30 (15): 2114–20..
+
+Li, Heng, and Richard Durbin. 2009. “Fast and Accurate Short Read Alignment with Burrows-Wheeler Transform.” *Bioinformatics* 25 (14): 1754–60..
+
+McKenna, Aaron, Matthew Hanna, Eric Banks, Andrey Sivachenko, Kristian Cibulskis, Andrew Kernytsky, Kiran Garimella, et al. 2010. “The Genome Analysis Toolkit: A MapReduce Framework for Analyzing Next-Generation DNA Sequencing Data.” *Genome Res* 20 (9): 1297–1303..
+
+Poplin, Ryan, Pi-Chuan Chang, David Alexander, Scott Schwartz, Thomas Colthurst, Alexander Ku, Dan Newburger, et al. 2018. “A Universal SNP and Small-Indel Variant Caller Using Deep Neural Networks.” *Nature Biotechnology* 36 (September): 983..
